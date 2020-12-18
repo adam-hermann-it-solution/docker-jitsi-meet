@@ -95,13 +95,11 @@ services:
             - XMPP_MUC_DOMAIN
             - XMPP_RECORDER_DOMAIN
             - TOKEN_AUTH_URL
+        hostname: ${XMPP_DOMAIN}
         networks:
             default:
                 external:
                     name: xtier-net
-                        aliases:
-                            - ${XMPP_DOMAIN}
-
     # XMPP server
     prosody:
         image: jitsi/prosody:latest
@@ -166,12 +164,11 @@ services:
             - LOG_LEVEL
             - PUBLIC_URL
             - TZ
+       hostname: ${XMPP_SERVER}
        networks:
             default:
                 external:
                     name: xtier-net
-                        aliases:
-                            - ${XMPP_SERVER}
 
     # Focus component
     jicofo:
@@ -231,13 +228,12 @@ services:
             - JVB_WS_SERVER_ID
             - PUBLIC_URL
             - TZ
+        hostname: jvb.meet.jitsi
         depends_on:
             - prosody
         networks:
             default:
                 external:
                     name: xtier-net
-                        aliases:
-                        - jvb.meet.jitsi
 
 # Custom network so all services can communicate using a FQDN
