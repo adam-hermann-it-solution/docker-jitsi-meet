@@ -99,7 +99,7 @@ services:
         networks:
             default:
                 external:
-                    name: xtier-net
+                        name: xtier-net
     # XMPP server
     prosody:
         image: jitsi/prosody:latest
@@ -168,7 +168,7 @@ services:
        networks:
             default:
                 external:
-                    name: xtier-net
+                        name: xtier-net
 
     # Focus component
     jicofo:
@@ -199,7 +199,7 @@ services:
         networks:
             default:
                 external:
-                    name: xtier-net
+                        name: xtier-net
 
     # Video bridge
     jvb:
@@ -234,6 +234,6 @@ services:
         networks:
             default:
                 external:
-                    name: xtier-net
+                        name: xtier-net
 
 # Custom network so all services can communicate using a FQDN
