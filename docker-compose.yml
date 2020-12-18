@@ -5,9 +5,6 @@ services:
     web:
         image: jitsi/web:latest
         restart: ${RESTART_POLICY}
-        ports:
-            - '${HTTP_PORT}:80'
-            - '${HTTPS_PORT}:443'
         volumes:
             - ${CONFIG}/web:/config:Z
             - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
@@ -17,8 +14,10 @@ services:
             - ENABLE_HSTS
             - ENABLE_XMPP_WEBSOCKET
             - DISABLE_HTTPS
-            - LETSENCRYPT_DOMAIN
+            - LETSENCRYPT_HOST
             - LETSENCRYPT_EMAIL
+            - VIRTUAL_HOST
+            - VIRTUAL_PORT
             - LETSENCRYPT_USE_STAGING
             - PUBLIC_URL
             - TZ
@@ -97,7 +96,7 @@ services:
             - XMPP_RECORDER_DOMAIN
             - TOKEN_AUTH_URL
         networks:
-            meet.jitsi:
+            xtier-net:
                 aliases:
                     - ${XMPP_DOMAIN}
 
@@ -166,7 +165,7 @@ services:
             - PUBLIC_URL
             - TZ
         networks:
-            meet.jitsi:
+            xtier-net:
                 aliases:
                     - ${XMPP_SERVER}
 
@@ -197,7 +196,7 @@ services:
         depends_on:
             - prosody
         networks:
-            meet.jitsi:
+            xtier-net:
 
     # Video bridge
     jvb:
@@ -229,10 +228,8 @@ services:
         depends_on:
             - prosody
         networks:
-            meet.jitsi:
+            xtier-net:
                 aliases:
                     - jvb.meet.jitsi
 
 # Custom network so all services can communicate using a FQDN
-networks:
-    meet.jitsi:
