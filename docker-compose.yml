@@ -98,8 +98,8 @@ services:
         hostname: ${XMPP_DOMAIN}
         networks:
             default:
-            external:
-            name: xtier-net
+             external:
+              name: xtier-net
                 
 
     # XMPP server
