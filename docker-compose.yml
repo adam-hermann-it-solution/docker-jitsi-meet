@@ -98,8 +98,10 @@ services:
         hostname: ${XMPP_DOMAIN}
         networks:
             default:
-                external:
-                        name: xtier-net
+            external:
+            name: xtier-net
+                
+
     # XMPP server
     prosody:
         image: jitsi/prosody:latest
@@ -164,11 +166,11 @@ services:
             - LOG_LEVEL
             - PUBLIC_URL
             - TZ
-       hostname: ${XMPP_SERVER}
-       networks:
-            default:
-                external:
-                        name: xtier-net
+        hostname: ${XMPP_SERVER}
+        networks:
+        default:
+            external:
+            name: xtier-net
 
     # Focus component
     jicofo:
@@ -198,8 +200,8 @@ services:
             - prosody
         networks:
             default:
-                external:
-                        name: xtier-net
+            external:
+            name: xtier-net
 
     # Video bridge
     jvb:
@@ -233,7 +235,7 @@ services:
             - prosody
         networks:
             default:
-                external:
-                        name: xtier-net
+            external:
+            name: xtier-net
 
 # Custom network so all services can communicate using a FQDN
