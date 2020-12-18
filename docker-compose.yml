@@ -233,3 +233,5 @@ services:
                     - jvb.meet.jitsi
 
 # Custom network so all services can communicate using a FQDN
+networks:
+    xtier-net:
